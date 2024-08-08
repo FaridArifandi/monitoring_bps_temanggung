@@ -6,12 +6,8 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::get('/about', function () {
-    return view('about', [
-        "name" => "BPS",
-        "email" => "bps@gmail.com",
-        "img" => "kantor-bps.jpg"
-    ]);
+Route::get('/users', function () {
+    return view('users');
 });
 
 Route::get('/blog', function () {
