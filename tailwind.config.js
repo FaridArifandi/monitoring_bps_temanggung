@@ -10,7 +10,9 @@ export default {
     extend: {},
   },
   plugins: [
-    require('flowbite/plugin'),
+    require('flowbite/plugin')({
+        charts: true
+    }),
     "prettier-plugin-svelte",
     "prettier-plugin-organize-imports",
     "prettier-plugin-tailwindcss"

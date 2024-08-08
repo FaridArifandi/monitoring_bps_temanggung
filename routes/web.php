@@ -3,17 +3,17 @@
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('home');
+    return view('pages.dashboard');
 });
 
-Route::get('/users', function () {
-    return view('users');
+Route::get('/data_tim_kerja', function () {
+    return view('pages.data_tim_kerja');
 });
 
-Route::get('/blog', function () {
-    return view('posts');
+Route::get('/target_kinerja', function () {
+    return view('pages.target_kinerja');
 });
 
-Route::get('/laravel', function () {
-    return view('welcome');
+Route::get('/realisasi', function () {
+    return view('pages.realisasi');
 });
