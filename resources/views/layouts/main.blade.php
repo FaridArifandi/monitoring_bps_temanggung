@@ -7,6 +7,7 @@
     <title>Monit.kel</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <link rel="stylesheet" href="./node_modules/apexcharts/dist/apexcharts.css">
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 </head>
 
 <body>

@@ -1,9 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Models\Charts;
 
 Route::get('/', function () {
-    return view('pages.dashboard');
+    $chartData = Charts::getDummyData();
+    return view('pages.dashboard', ['chartData' => $chartData]);
 });
 
 Route::get('/data_tim_kerja', function () {
