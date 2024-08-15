@@ -22,19 +22,10 @@
                     No
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Nama Kegiatan
+                    Nama Tim
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Tim Kerja
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    Periode Kegiatan
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    Target
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    Satuan
+                    Ketua
                 </th>
                 <th scope="col" class="px-6 py-3">
                     Aksi
@@ -42,32 +33,24 @@
             </tr>
         </thead>
         <tbody>
+            @foreach($data as $item)
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                 <td class="px-6 py-4">
-                    1
+                    {{ $item['no'] }}
                 </td>
                 <th scope="row" class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
-                    <div class="text-base font-semibold">Neil Sims</div>
+                    <div class="text-base font-semibold">{{ $item['nama_tim'] }}</div>
                 </th>
                 <td class="px-6 py-4">
-                    React Developer
+                    {{ $item['ketua'] }}
                 </td>
-                <td class="px-6 py-4">
-                    Online
-                </td>
-                <td class="px-6 py-4">
-                    Online
-                </td>
-                <td class="px-6 py-4">
-                    Online
-                </td>
-
                 <td class="px-6 py-4">
                     <!-- Modal toggle -->
                     <a href="#" type="button" data-modal-target="editUserModal" data-modal-show="editUserModal"
                         class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit user</a>
                 </td>
             </tr>
+            @endforeach
         </tbody>
     </table>
     <!-- Edit user modal -->

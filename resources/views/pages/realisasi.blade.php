@@ -3,6 +3,6 @@
 
 @section('body')
 
-    @include('partials.table_kinerja')
+    @include('partials.table_realisasi')
 
 @endsection

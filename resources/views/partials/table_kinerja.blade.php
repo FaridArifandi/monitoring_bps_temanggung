@@ -51,7 +51,7 @@
                 <td class="px-6 py-4">{{ $item['target'] }}</td>
                 <td class="px-6 py-4">{{ $item['satuan'] }}</td>
                 <td class="px-6 py-4">
-                    <a href="#" type="button" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                    <a href="#" type="button" data-modal-target="editUserModal" data-modal-show="editUserModal" type="button" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
                 </td>
             </tr>
             @endforeach

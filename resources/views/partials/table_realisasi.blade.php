@@ -34,7 +34,16 @@
                     Target
                 </th>
                 <th scope="col" class="px-6 py-3">
+                    Realisasi
+                </th>
+                <th scope="col" class="px-6 py-3">
                     Satuan
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Link Bukti Dukung
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Ket.
                 </th>
                 <th scope="col" class="px-6 py-3">
                     Aksi
@@ -42,32 +51,22 @@
             </tr>
         </thead>
         <tbody>
+            @foreach($data as $item)
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                <td class="px-6 py-4">{{ $item['no'] }}</td>
+                <td class="px-6 py-4">{{ $item['nama_kegiatan'] }}</td>
+                <td class="px-6 py-4">{{ $item['tim_kerja'] }}</td>
+                <td class="px-6 py-4">{{ $item['periode_kegiatan'] }}</td>
+                <td class="px-6 py-4">{{ $item['target'] }}</td>
+                <td class="px-6 py-4">{{ $item['realisasi'] }}</td>
+                <td class="px-6 py-4">{{ $item['satuan'] }}</td>
+                <td class="px-6 py-4">{{ $item['link'] }}</td>
+                <td class="px-6 py-4">{{ $item['ket'] }}</td>
                 <td class="px-6 py-4">
-                    1
-                </td>
-                <th scope="row" class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
-                    <div class="text-base font-semibold">Neil Sims</div>
-                </th>
-                <td class="px-6 py-4">
-                    React Developer
-                </td>
-                <td class="px-6 py-4">
-                    Online
-                </td>
-                <td class="px-6 py-4">
-                    Online
-                </td>
-                <td class="px-6 py-4">
-                    Online
-                </td>
-
-                <td class="px-6 py-4">
-                    <!-- Modal toggle -->
-                    <a href="#" type="button" data-modal-target="editUserModal" data-modal-show="editUserModal"
-                        class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit user</a>
+                    <a href="#" type="button" data-modal-target="editUserModal" data-modal-show="editUserModal" type="button" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
                 </td>
             </tr>
+            @endforeach
         </tbody>
     </table>
     <!-- Edit user modal -->

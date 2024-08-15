@@ -10,7 +10,8 @@ Route::get('/', function () {
 });
 
 Route::get('/data_tim_kerja', function () {
-    return view('pages.data_tim_kerja');
+    $data = Tabels::getTimData();
+    return view('pages.data_tim_kerja', ['data' => $data]);
 });
 
 Route::get('/target_kinerja', function () {
@@ -19,5 +20,6 @@ Route::get('/target_kinerja', function () {
 });
 
 Route::get('/realisasi', function () {
-    return view('pages.realisasi');
+    $data = Tabels::getKinerjaData();
+    return view('pages.realisasi', ['data' => $data]);
 });
