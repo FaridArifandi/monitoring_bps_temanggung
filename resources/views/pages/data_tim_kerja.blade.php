@@ -2,5 +2,5 @@
 
 
 @section('body')
-    @include('partials.table')
+    @include('partials.table_kinerja')
 @endsection

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Models\Charts;
+use App\Models\Tabels;
 
 Route::get('/', function () {
     $chartData = Charts::getDummyData();
@@ -13,7 +14,8 @@ Route::get('/data_tim_kerja', function () {
 });
 
 Route::get('/target_kinerja', function () {
-    return view('pages.target_kinerja');
+    $data = Tabels::getKinerjaData();
+    return view('pages.target_kinerja', ['data' => $data]);
 });
 
 Route::get('/realisasi', function () {
