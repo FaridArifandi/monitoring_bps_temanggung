@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\tab_kinerja;
 use App\Http\Requests\Storetab_kinerjaRequest;
 use App\Http\Requests\Updatetab_kinerjaRequest;
+use App\Models\tim_kerja;
 
 class TabKinerjaController extends Controller
 {
@@ -13,7 +14,14 @@ class TabKinerjaController extends Controller
      */
     public function index()
     {
-        //
+        $kinerjaData = tab_kinerja::with('tim_Kerja')->get();
+
+        // Cek URL yang diakses untuk menentukan view mana yang harus digunakan
+        if (request()->is('target_kinerja')) {
+            return view('pages.target_kinerja', compact('kinerjaData'));
+        } elseif (request()->is('realisasi')) {
+            return view('pages.realisasi', compact('kinerjaData'));
+        }
     }
 
     /**

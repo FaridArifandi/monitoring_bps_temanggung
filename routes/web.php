@@ -1,10 +1,11 @@
 <?php
 
-use App\Http\Controllers\ChartsController;
-use App\Http\Controllers\TabelsController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TimKerjaController;
+use App\Http\Controllers\TabKinerjaController;
+use App\Http\Controllers\DashMonitoringController;
 
-Route::get('/', [ChartsController::class, "DummyData"]);
-Route::get('/data_tim_kerja', [TabelsController::class, "TimKerja"]);
-Route::get('/target_kinerja', [TabelsController::class, 'KinerjaData']);
-Route::get('/realisasi', [TabelsController::class, 'Realisasi']);
+Route::get('/', [DashMonitoringController::class, 'index']);
+Route::get('/data_tim_kerja', [TimKerjaController::class, "index"]);
+Route::get('/target_kinerja', [TabKinerjaController::class, 'index']);
+Route::get('/realisasi', [TabKinerjaController::class, 'index']);

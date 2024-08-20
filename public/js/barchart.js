@@ -1,10 +1,15 @@
 const options = {
-    colors: chartData.map((data) => data.color),
-    series: chartData.map((data) => ({
-        name: data.name,
-        color: data.color,
-        data: data.data,
-    })),
+    colors: ['#1A56DB', '#FDBA8C'], // Warna chart
+    series: [
+        {
+            name: 'Target',
+            data: chartData.map(item => item.target) // Ambil data target dari JSON
+        },
+        {
+            name: 'Realisasi',
+            data: chartData.map(item => item.realisasi) // Ambil data realisasi dari JSON
+        }
+    ],
     chart: {
         type: "bar",
         height: "320px",
@@ -28,42 +33,12 @@ const options = {
             fontFamily: "Inter, sans-serif",
         },
     },
-    states: {
-        hover: {
-            filter: {
-                type: "darken",
-                value: 1,
-            },
-        },
-    },
-    stroke: {
-        show: true,
-        width: 0,
-        colors: ["transparent"],
-    },
-    grid: {
-        show: false,
-        strokeDashArray: 4,
-        padding: {
-            left: 2,
-            right: 2,
-            top: -14,
-        },
-    },
-    dataLabels: {
-        enabled: false,
-    },
-    legend: {
-        show: false,
-    },
     xaxis: {
-        floating: false,
+        categories: chartData.map(item => item.nama_tim), // Nama tim sebagai kategori pada sumbu X
         labels: {
-            show: true,
             style: {
                 fontFamily: "Inter, sans-serif",
-                cssClass:
-                    "text-xs font-normal fill-gray-500 dark:fill-gray-400",
+                cssClass: "text-xs font-normal fill-gray-500 dark:fill-gray-400",
             },
         },
         axisBorder: {
@@ -74,7 +49,13 @@ const options = {
         },
     },
     yaxis: {
-        show: false,
+        show: true,
+        labels: {
+            style: {
+                fontFamily: "Inter, sans-serif",
+                cssClass: "text-xs font-normal fill-gray-500 dark:fill-gray-400",
+            },
+        },
     },
     fill: {
         opacity: 1,
@@ -87,7 +68,7 @@ if (
 ) {
     const chart = new ApexCharts(
         document.getElementById("column-chart"),
-        options,
+        options
     );
     chart.render();
 }

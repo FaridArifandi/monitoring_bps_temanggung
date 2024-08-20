@@ -36,13 +36,13 @@
             @foreach($data as $item)
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                 <td class="px-6 py-4">
-                    {{ $item['no'] }}
+                    {{ $item->id }}
                 </td>
                 <th scope="row" class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
-                    <div class="text-base font-semibold">{{ $item['nama_tim'] }}</div>
+                    <div class="text-base font-semibold">{{ $item->nama_tim }}</div>
                 </th>
                 <td class="px-6 py-4">
-                    {{ $item['ketua'] }}
+                    {{ $item->nama_ketua }}
                 </td>
                 <td class="px-6 py-4">
                     <!-- Modal toggle -->

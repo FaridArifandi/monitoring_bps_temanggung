@@ -51,17 +51,17 @@
             </tr>
         </thead>
         <tbody>
-            @foreach($data as $item)
+            @foreach($kinerjaData as $kinerja)
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                <td class="px-6 py-4">{{ $item['no'] }}</td>
-                <td class="px-6 py-4">{{ $item['nama_kegiatan'] }}</td>
-                <td class="px-6 py-4">{{ $item['tim_kerja'] }}</td>
-                <td class="px-6 py-4">{{ $item['periode_kegiatan'] }}</td>
-                <td class="px-6 py-4">{{ $item['target'] }}</td>
-                <td class="px-6 py-4">{{ $item['realisasi'] }}</td>
-                <td class="px-6 py-4">{{ $item['satuan'] }}</td>
-                <td class="px-6 py-4">{{ $item['link'] }}</td>
-                <td class="px-6 py-4">{{ $item['ket'] }}</td>
+                <td class="px-6 py-4">{{ $kinerja->id  }}</td>
+                <td class="px-6 py-4">{{ $kinerja->nama_kegiatan }}</td>
+                <td class="px-6 py-4">{{ $kinerja->tim_Kerja->nama_tim }}</td>
+                <td class="px-6 py-4">{{ $kinerja->periode_kegiatan }}</td>
+                <td class="px-6 py-4">{{ $kinerja->target }}</td>
+                <td class="px-6 py-4">{{ $kinerja->realisasi }}</td>
+                <td class="px-6 py-4">{{ $kinerja->satuan }}</td>
+                <td class="px-6 py-4">{{ $kinerja->link_bukti_dukung }}</td>
+                <td class="px-6 py-4">{{ $kinerja->keterangan }}</td>
                 <td class="px-6 py-4">
                     <a href="#" type="button" data-modal-target="editUserModal" data-modal-show="editUserModal" type="button" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
                 </td>

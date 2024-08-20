@@ -9,7 +9,7 @@ class tab_kinerja extends Model
 {
     use HasFactory;
 
-    public function timKerja()
+    public function tim_Kerja()
     {
         return $this->belongsTo(tim_kerja::class, 'tim_kerja_id');
     }

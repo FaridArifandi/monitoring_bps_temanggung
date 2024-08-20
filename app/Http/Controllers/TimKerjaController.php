@@ -13,7 +13,9 @@ class TimKerjaController extends Controller
      */
     public function index()
     {
-        //
+        return view('pages.data_tim_kerja', [
+            'data' => tim_kerja::all()
+        ]);
     }
 
     /**

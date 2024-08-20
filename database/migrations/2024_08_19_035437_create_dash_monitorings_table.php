@@ -12,8 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('dash_monitorings', function (Blueprint $table) {
-            $table->id();
+            $table->id(); //(Primary Key)
+            $table->unsignedBigInteger('tim_kerja_id');
+            $table->integer('target');
+            $table->integer('realisasi');
             $table->timestamps();
+            $table->foreign('tim_kerja_id')->references('id')->on('tim_kerjas')->onDelete('cascade'); // Foreign key to tim_kerja
         });
     }
 
