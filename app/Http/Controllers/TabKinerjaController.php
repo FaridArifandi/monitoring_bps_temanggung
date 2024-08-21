@@ -15,7 +15,11 @@ class TabKinerjaController extends Controller
      */
     public function index()
     {
-        $kinerjaData = TabKinerja::with('tim_Kerja')->get();
+        // Memuat semua data TabKinerja tanpa relasi
+        $kinerjaData = TabKinerja::all();
+
+        // Lazy eager loading untuk relasi tim_Kerja
+        $kinerjaData->load('tim_Kerja');
 
         // Cek URL yang diakses untuk menentukan view mana yang harus digunakan
         if (request()->is('target_kinerja')) {

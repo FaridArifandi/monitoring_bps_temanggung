@@ -14,7 +14,11 @@ class DashMonitoringController extends Controller
      */
     public function index()
     {
-        $timKerjas = TimKerja::with('kinerjas')->get();
+        // Memuat semua data TimKerja tanpa relasi
+        $timKerjas = TimKerja::all();
+
+        // Lazy eager loading: muat relasi kinerjas hanya ketika dibutuhkan
+        $timKerjas->load('kinerjas');
 
         $dataMonitoring = $timKerjas->map(function ($tim) {
             $target = $tim->kinerjas->count(); // Hitung jumlah kegiatan yang diikuti oleh tim

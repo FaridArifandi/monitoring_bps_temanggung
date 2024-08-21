@@ -13,8 +13,13 @@ class TimKerjaController extends Controller
      */
     public function index()
     {
+        $timKerjas = TimKerja::all();
+
+        // Lazy eager load
+        $timKerjas->load(['kinerjas', 'monitoringKegiatan']);
+
         return view('pages.data_tim_kerja', [
-            'data' => TimKerja::all()
+            'data' => $timKerjas
         ]);
     }
 
