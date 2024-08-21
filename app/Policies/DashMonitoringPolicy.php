@@ -3,7 +3,7 @@
 namespace App\Policies;
 
 use App\Models\User;
-use App\Models\dash_monitoring;
+use App\Models\DashMonitoring;
 use Illuminate\Auth\Access\Response;
 
 class DashMonitoringPolicy
@@ -19,7 +19,7 @@ class DashMonitoringPolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, dash_monitoring $dashMonitoring): bool
+    public function view(User $user, DashMonitoring $dashMonitoring): bool
     {
         //
     }
@@ -35,7 +35,7 @@ class DashMonitoringPolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, dash_monitoring $dashMonitoring): bool
+    public function update(User $user, DashMonitoring $dashMonitoring): bool
     {
         //
     }
@@ -43,7 +43,7 @@ class DashMonitoringPolicy
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, dash_monitoring $dashMonitoring): bool
+    public function delete(User $user, DashMonitoring $dashMonitoring): bool
     {
         //
     }
@@ -51,7 +51,7 @@ class DashMonitoringPolicy
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(User $user, dash_monitoring $dashMonitoring): bool
+    public function restore(User $user, DashMonitoring $dashMonitoring): bool
     {
         //
     }
@@ -59,7 +59,7 @@ class DashMonitoringPolicy
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(User $user, dash_monitoring $dashMonitoring): bool
+    public function forceDelete(User $user, DashMonitoring $dashMonitoring): bool
     {
         //
     }

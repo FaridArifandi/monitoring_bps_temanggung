@@ -3,7 +3,7 @@
 namespace App\Policies;
 
 use App\Models\User;
-use App\Models\tim_kerja;
+use App\Models\TimKerja;
 use Illuminate\Auth\Access\Response;
 
 class TimKerjaPolicy
@@ -19,7 +19,7 @@ class TimKerjaPolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, tim_kerja $timKerja): bool
+    public function view(User $user, TimKerja $timKerja): bool
     {
         //
     }
@@ -35,7 +35,7 @@ class TimKerjaPolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, tim_kerja $timKerja): bool
+    public function update(User $user, TimKerja $timKerja): bool
     {
         //
     }
@@ -43,7 +43,7 @@ class TimKerjaPolicy
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, tim_kerja $timKerja): bool
+    public function delete(User $user, TimKerja $timKerja): bool
     {
         //
     }
@@ -51,7 +51,7 @@ class TimKerjaPolicy
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(User $user, tim_kerja $timKerja): bool
+    public function restore(User $user, TimKerja $timKerja): bool
     {
         //
     }
@@ -59,7 +59,7 @@ class TimKerjaPolicy
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(User $user, tim_kerja $timKerja): bool
+    public function forceDelete(User $user, TimKerja $timKerja): bool
     {
         //
     }

@@ -3,9 +3,11 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\tim_kerja>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\TimKerja>
  */
 class TimKerjaFactory extends Factory
 {
@@ -17,7 +19,8 @@ class TimKerjaFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'nama_tim' => $this->faker->unique()->company(),
+            'nama_ketua' => $this->faker->name(),
         ];
     }
 }

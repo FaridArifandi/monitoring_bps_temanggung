@@ -3,7 +3,7 @@
 namespace App\Policies;
 
 use App\Models\User;
-use App\Models\tab_kinerja;
+use App\Models\TabKinerja;
 use Illuminate\Auth\Access\Response;
 
 class TabKinerjaPolicy
@@ -19,7 +19,7 @@ class TabKinerjaPolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, tab_kinerja $tabKinerja): bool
+    public function view(User $user, TabKinerja $tabKinerja): bool
     {
         //
     }
@@ -35,7 +35,7 @@ class TabKinerjaPolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, tab_kinerja $tabKinerja): bool
+    public function update(User $user, TabKinerja $tabKinerja): bool
     {
         //
     }
@@ -43,7 +43,7 @@ class TabKinerjaPolicy
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, tab_kinerja $tabKinerja): bool
+    public function delete(User $user, TabKinerja $tabKinerja): bool
     {
         //
     }
@@ -51,7 +51,7 @@ class TabKinerjaPolicy
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(User $user, tab_kinerja $tabKinerja): bool
+    public function restore(User $user, TabKinerja $tabKinerja): bool
     {
         //
     }
@@ -59,7 +59,7 @@ class TabKinerjaPolicy
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(User $user, tab_kinerja $tabKinerja): bool
+    public function forceDelete(User $user, TabKinerja $tabKinerja): bool
     {
         //
     }

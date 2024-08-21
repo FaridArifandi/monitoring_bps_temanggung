@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\dash_monitoring;
-use App\Models\tim_kerja;
+use App\Models\DashMonitoring;
+use App\Models\TimKerja;
 use App\Http\Requests\Storedash_monitoringRequest;
 use App\Http\Requests\Updatedash_monitoringRequest;
 
@@ -14,7 +14,7 @@ class DashMonitoringController extends Controller
      */
     public function index()
     {
-        $timKerjas = tim_kerja::with('kinerjas')->get();
+        $timKerjas = TimKerja::with('kinerjas')->get();
 
         $dataMonitoring = $timKerjas->map(function ($tim) {
             $target = $tim->kinerjas->count(); // Hitung jumlah kegiatan yang diikuti oleh tim
@@ -51,7 +51,7 @@ class DashMonitoringController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(dash_monitoring $dash_monitoring)
+    public function show(DashMonitoring $dash_monitoring)
     {
         //
     }
@@ -59,7 +59,7 @@ class DashMonitoringController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(dash_monitoring $dash_monitoring)
+    public function edit(DashMonitoring $dash_monitoring)
     {
         //
     }
@@ -67,7 +67,7 @@ class DashMonitoringController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Updatedash_monitoringRequest $request, dash_monitoring $dash_monitoring)
+    public function update(Updatedash_monitoringRequest $request, DashMonitoring $dash_monitoring)
     {
         //
     }
@@ -75,7 +75,7 @@ class DashMonitoringController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(dash_monitoring $dash_monitoring)
+    public function destroy(DashMonitoring $dash_monitoring)
     {
         //
     }

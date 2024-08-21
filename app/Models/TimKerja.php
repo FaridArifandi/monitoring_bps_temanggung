@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class tim_kerja extends Model
+class TimKerja extends Model
 {
     use HasFactory;
 
@@ -16,11 +16,11 @@ class tim_kerja extends Model
 
     public function kinerjas()
     {
-        return $this->hasMany(tab_kinerja::class, 'tim_kerja_id');
+        return $this->hasMany(TabKinerja::class, 'tim_kerja_id');
     }
 
     public function monitoringKegiatan()
     {
-        return $this->hasMany(dash_monitoring::class);
+        return $this->hasMany(DashMonitoring::class);
     }
 }

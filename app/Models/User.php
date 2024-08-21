@@ -44,4 +44,9 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function kinerjas()
+    {
+        return $this->hasMany(TabKinerja::class);
+    }
 }

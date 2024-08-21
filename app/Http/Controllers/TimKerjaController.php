@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\tim_kerja;
+use App\Models\TimKerja;
 use App\Http\Requests\Storetim_kerjaRequest;
 use App\Http\Requests\Updatetim_kerjaRequest;
 
@@ -14,7 +14,7 @@ class TimKerjaController extends Controller
     public function index()
     {
         return view('pages.data_tim_kerja', [
-            'data' => tim_kerja::all()
+            'data' => TimKerja::all()
         ]);
     }
 
@@ -37,7 +37,7 @@ class TimKerjaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(tim_kerja $tim_kerja)
+    public function show(TimKerja $tim_kerja)
     {
         //
     }
@@ -45,7 +45,7 @@ class TimKerjaController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(tim_kerja $tim_kerja)
+    public function edit(TimKerja $tim_kerja)
     {
         //
     }
@@ -53,7 +53,7 @@ class TimKerjaController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Updatetim_kerjaRequest $request, tim_kerja $tim_kerja)
+    public function update(Updatetim_kerjaRequest $request, TimKerja $tim_kerja)
     {
         //
     }
@@ -61,7 +61,7 @@ class TimKerjaController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(tim_kerja $tim_kerja)
+    public function destroy(TimKerja $tim_kerja)
     {
         //
     }

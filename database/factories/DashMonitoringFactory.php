@@ -5,7 +5,7 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\dash_monitoring>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\DashMonitoring>
  */
 class DashMonitoringFactory extends Factory
 {

@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('nama_kegiatan');
             $table->unsignedBigInteger('tim_kerja_id');
             $table->foreign('tim_kerja_id')->references('id')->on('tim_kerjas')->onDelete('cascade'); // Foreign key to tim_kerja
+            $table->foreignId('user_id');
             $table->string('periode_kegiatan');
             $table->integer('target');
             $table->integer('realisasi') -> nullable();

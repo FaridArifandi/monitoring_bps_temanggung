@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class dash_monitoring extends Model
+class DashMonitoring extends Model
 {
     use HasFactory;
 
@@ -13,6 +13,6 @@ class dash_monitoring extends Model
 
     public function timKerja()
     {
-        return $this->belongsTo(tim_kerja::class);
+        return $this->belongsTo(TimKerja::class);
     }
 }

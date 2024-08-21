@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\tab_kinerja;
+use App\Models\TabKinerja;
 use App\Http\Requests\Storetab_kinerjaRequest;
 use App\Http\Requests\Updatetab_kinerjaRequest;
-use App\Models\tim_kerja;
+use App\Models\TimKerja;
+
 
 class TabKinerjaController extends Controller
 {
@@ -14,7 +15,7 @@ class TabKinerjaController extends Controller
      */
     public function index()
     {
-        $kinerjaData = tab_kinerja::with('tim_Kerja')->get();
+        $kinerjaData = TabKinerja::with('tim_Kerja')->get();
 
         // Cek URL yang diakses untuk menentukan view mana yang harus digunakan
         if (request()->is('target_kinerja')) {
@@ -43,7 +44,7 @@ class TabKinerjaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(tab_kinerja $tab_kinerja)
+    public function show(TabKinerja $tab_kinerja)
     {
         //
     }
@@ -51,7 +52,7 @@ class TabKinerjaController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(tab_kinerja $tab_kinerja)
+    public function edit(TabKinerja $tab_kinerja)
     {
         //
     }
@@ -59,7 +60,7 @@ class TabKinerjaController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Updatetab_kinerjaRequest $request, tab_kinerja $tab_kinerja)
+    public function update(Updatetab_kinerjaRequest $request, TabKinerja $tab_kinerja)
     {
         //
     }
@@ -67,7 +68,7 @@ class TabKinerjaController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(tab_kinerja $tab_kinerja)
+    public function destroy(TabKinerja $tab_kinerja)
     {
         //
     }
