@@ -14,7 +14,7 @@ class TimKerjaSeeder extends Seeder
     public function run(): void
     {
 
-        TimKerja::factory()->count(5)->create();
+        TimKerja::factory()->count(4)->create();
 
         // tim_kerja::create([
         //     'nama_tim' => 'Tim Alpha',

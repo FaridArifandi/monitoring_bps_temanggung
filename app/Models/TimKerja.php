@@ -9,6 +9,9 @@ class TimKerja extends Model
 {
     use HasFactory;
 
+
+    protected $load = ['kinerjas','monitoringKegiatan'];
+
     protected $fillable = [
         'nama_tim',
         'nama_ketua'

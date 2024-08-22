@@ -16,7 +16,7 @@
                 <a href="/" class="flex ms-2 md:me-24">
                     <img src="img/logo_bps.webp" class="h-8 me-3" alt="Logo BPS" />
                     <span class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">
-                        Simangggung
+                        Simanggung
                     </span>
                 </a>
             </div>

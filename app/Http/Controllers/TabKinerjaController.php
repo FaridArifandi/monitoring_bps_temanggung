@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\TabKinerja;
+use Illuminate\Http\Request;
 use App\Http\Requests\Storetab_kinerjaRequest;
 use App\Http\Requests\Updatetab_kinerjaRequest;
-use App\Models\TimKerja;
 
 
 class TabKinerjaController extends Controller
@@ -13,21 +13,52 @@ class TabKinerjaController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        // Memuat semua data TabKinerja tanpa relasi
-        $kinerjaData = TabKinerja::all();
+        // Mengambil tahun dan bulan dari request
+        $year = $request->input('year');
+        $month = $request->input('month');
 
-        // Lazy eager loading untuk relasi tim_Kerja
-        $kinerjaData->load('tim_Kerja');
+        // Mengambil data tahun dan bulan yang tersedia di database
+        $years = TabKinerja::selectRaw('YEAR(start_date) as year')
+            ->distinct()
+            ->pluck('year');
+        $months = [
+            ['number' => '01', 'name' => 'Januari'],
+            ['number' => '02', 'name' => 'Februari'],
+            ['number' => '03', 'name' => 'Maret'],
+            ['number' => '04', 'name' => 'April'],
+            ['number' => '05', 'name' => 'Mei'],
+            ['number' => '06', 'name' => 'Juni'],
+            ['number' => '07', 'name' => 'Juli'],
+            ['number' => '08', 'name' => 'Agustus'],
+            ['number' => '09', 'name' => 'September'],
+            ['number' => '10', 'name' => 'Oktober'],
+            ['number' => '11', 'name' => 'November'],
+            ['number' => '12', 'name' => 'Desember'],
+        ];
 
-        // Cek URL yang diakses untuk menentukan view mana yang harus digunakan
-        if (request()->is('target_kinerja')) {
-            return view('pages.target_kinerja', compact('kinerjaData'));
-        } elseif (request()->is('realisasi')) {
-            return view('pages.realisasi', compact('kinerjaData'));
+        // Memfilter data berdasarkan bulan dan tahun dengan mengecek apakah range tanggal sesuai
+        $kinerjaData = TabKinerja::with('timKerja') // Eager loading untuk relasi 'timKerja'
+            ->when($year && $month, function ($query) use ($year, $month) {
+                return $query->where(function ($query) use ($year, $month) {
+                    $query->whereYear('start_date', '<=', $year)
+                        ->whereYear('end_date', '>=', $year)
+                        ->whereMonth('start_date', '<=', $month)
+                        ->whereMonth('end_date', '>=', $month);
+                });
+            })
+            ->paginate(10);
+
+        // Cek rute yang sedang diakses dan arahkan ke view yang sesuai
+        if ($request->is('target_kinerja')) {
+            return view('pages.tabkinerja', compact('kinerjaData', 'years', 'months', 'year', 'month'));
+        } elseif ($request->is('realisasi')) {
+            return view('pages.realisasi', compact('kinerjaData', 'years', 'months', 'year', 'month'));
         }
     }
+
+
 
     /**
      * Show the form for creating a new resource.

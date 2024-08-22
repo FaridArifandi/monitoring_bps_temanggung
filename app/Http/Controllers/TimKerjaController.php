@@ -16,9 +16,9 @@ class TimKerjaController extends Controller
         $timKerjas = TimKerja::all();
 
         // Lazy eager load
-        $timKerjas->load(['kinerjas', 'monitoringKegiatan']);
+        $timKerjas->load([]);
 
-        return view('pages.data_tim_kerja', [
+        return view('pages.timkerja', [
             'data' => $timKerjas
         ]);
     }

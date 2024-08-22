@@ -13,7 +13,8 @@ class TabKinerja extends Model
         'nama_kegiatan',
         'tim_kerja_id',
         'user_id',
-        'periode_kegiatan',
+        'start_date',
+        'end_date',
         'target',
         'realisasi',
         'satuan',
@@ -21,7 +22,7 @@ class TabKinerja extends Model
         'keterangan',
     ];
 
-    public function tim_Kerja()
+    public function timKerja()
     {
         return $this->belongsTo(TimKerja::class, 'tim_kerja_id');
     }

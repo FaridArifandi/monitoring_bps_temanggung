@@ -12,17 +12,18 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('tab_kinerjas', function (Blueprint $table) {
-            $table->id(); //(Primary Key)
+            $table->id();
             $table->string('nama_kegiatan');
             $table->unsignedBigInteger('tim_kerja_id');
-            $table->foreign('tim_kerja_id')->references('id')->on('tim_kerjas')->onDelete('cascade'); // Foreign key to tim_kerja
+            $table->foreign('tim_kerja_id')->references('id')->on('tim_kerjas')->onDelete('cascade');
             $table->foreignId('user_id');
-            $table->string('periode_kegiatan');
+            $table->date('start_date'); // Tanggal mulai
+            $table->date('end_date'); // Tanggal akhir
             $table->integer('target');
-            $table->integer('realisasi') -> nullable();
+            $table->integer('realisasi')->nullable();
             $table->string('satuan');
-            $table->string('link_bukti_dukung') -> nullable();
-            $table->text('keterangan') -> nullable();
+            $table->string('link_bukti_dukung')->nullable();
+            $table->text('keterangan')->nullable();
             $table->timestamps();
         });
     }

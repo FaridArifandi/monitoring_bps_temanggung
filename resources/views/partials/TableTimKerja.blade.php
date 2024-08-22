@@ -1,5 +1,5 @@
 <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-    <div
+    {{-- <div
         class="flex items-center justify-between flex-column md:flex-row flex-wrap space-y-4 md:space-y-0 py-4 bg-white dark:bg-gray-900">
         <label for="table-search" class="sr-only">Search</label>
         <div class="relative">
@@ -14,7 +14,7 @@
                 class="block pt-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="Search for users">
         </div>
-    </div>
+    </div> --}}
     <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
@@ -22,28 +22,10 @@
                     No
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Nama Kegiatan
+                    Nama Tim
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Tim Kerja
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    Periode Kegiatan
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    Target
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    Realisasi
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    Satuan
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    Link Bukti Dukung
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    Ket.
+                    Ketua
                 </th>
                 <th scope="col" class="px-6 py-3">
                     Aksi
@@ -51,19 +33,21 @@
             </tr>
         </thead>
         <tbody>
-            @foreach($kinerjaData as $kinerja)
+            @foreach($data as $item)
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                <td class="px-6 py-4">{{ $kinerja->id  }}</td>
-                <td class="px-6 py-4">{{ $kinerja->nama_kegiatan }}</td>
-                <td class="px-6 py-4">{{ $kinerja->tim_Kerja->nama_tim }}</td>
-                <td class="px-6 py-4">{{ $kinerja->periode_kegiatan }}</td>
-                <td class="px-6 py-4">{{ $kinerja->target }}</td>
-                <td class="px-6 py-4">{{ $kinerja->realisasi }}</td>
-                <td class="px-6 py-4">{{ $kinerja->satuan }}</td>
-                <td class="px-6 py-4">{{ $kinerja->link_bukti_dukung }}</td>
-                <td class="px-6 py-4">{{ $kinerja->keterangan }}</td>
                 <td class="px-6 py-4">
-                    <a href="#" type="button" data-modal-target="editUserModal" data-modal-show="editUserModal" type="button" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                    {{ $item->id }}
+                </td>
+                <th scope="row" class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
+                    <div class="text-base font-semibold">{{ $item->nama_tim }}</div>
+                </th>
+                <td class="px-6 py-4">
+                    {{ $item->nama_ketua }}
+                </td>
+                <td class="px-6 py-4">
+                    <!-- Modal toggle -->
+                    <a href="#" type="button" data-modal-target="editUserModal" data-modal-show="editUserModal"
+                        class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit user</a>
                 </td>
             </tr>
             @endforeach
