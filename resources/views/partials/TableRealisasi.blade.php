@@ -86,8 +86,8 @@
                     <td class="px-6 py-4">{{ $kinerja->link_bukti_dukung }}</td>
                     <td class="px-6 py-4">{{ $kinerja->keterangan }}</td>
                     <td class="px-6 py-4">
-                        <a href="#" type="button" data-modal-target="editUserModal"
-                            data-modal-show="editUserModal" type="button"
+                        <a href="#" type="button" data-modal-target="editKinerjaModal"
+                            data-modal-show="editKinerjaModal" type="button"
                             class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
                     </td>
                 </tr>
@@ -99,8 +99,8 @@
     <div class="py-4">
         {{ $kinerjaData->links() }}
     </div>
-    <!-- Edit user modal -->
-    <div id="editUserModal" tabindex="-1" aria-hidden="true"
+    <!-- Edit Kinerja modal -->
+    <div id="editKinerjaModal" tabindex="-1" aria-hidden="true"
         class="fixed top-0 left-0 right-0 z-50 items-center justify-center hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
         <div class="relative w-full max-w-2xl max-h-full">
             <!-- Modal content -->
@@ -108,11 +108,11 @@
                 <!-- Modal header -->
                 <div class="flex items-start justify-between p-4 border-b rounded-t dark:border-gray-600">
                     <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
-                        Edit user
+                        Edit
                     </h3>
                     <button type="button"
                         class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
-                        data-modal-hide="editUserModal">
+                        data-modal-hide="editKinerjaModal">
                         <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                             viewBox="0 0 14 14">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

@@ -67,7 +67,7 @@ class DashMonitoringController extends Controller
             ];
         });
 
-        return view('pages.dashboard', compact('dataMonitoring', 'years', 'months', 'year', 'month'));
+        return view('dashboard.index', compact('dataMonitoring', 'years', 'months', 'year', 'month'));
     }
 
 
