@@ -95,21 +95,64 @@
 
         </tbody>
     </table>
+    <div class="py-4">
+        <nav class="flex justify-between items-center">
+            <!-- Tombol Previous -->
+            @if ($kinerjaData->onFirstPage())
+                <span class="px-3 py-2 mr-3 bg-gray-300 text-gray-700 cursor-not-allowed rounded">
+                    Previous
+                </span>
+            @else
+                <a href="{{ $kinerjaData->previousPageUrl() }}" class="px-3 py-2 mr-3 bg-blue-600 text-white rounded hover:bg-blue-700">
+                    Previous
+                </a>
+            @endif
+
+            <!-- Link Halaman -->
+            <div class="space-x-2">
+                @foreach ($kinerjaData->getUrlRange(1, $kinerjaData->lastPage()) as $page => $url)
+                    @if ($page == $kinerjaData->currentPage())
+                        <span class="px-3 py-2 bg-blue-600 text-white rounded">
+                            {{ $page }}
+                        </span>
+                    @else
+                        <a href="{{ $url }}" class="px-3 py-2 bg-gray-200 text-gray-700 rounded hover:bg-blue-700 hover:text-white">
+                            {{ $page }}
+                        </a>
+                    @endif
+                @endforeach
+            </div>
+
+            <!-- Tombol Next -->
+            @if ($kinerjaData->hasMorePages())
+                <a href="{{ $kinerjaData->nextPageUrl() }}" class="px-3 py-2 ml-3 bg-blue-600 text-white rounded hover:bg-blue-700">
+                    Next
+                </a>
+            @else
+                <span class="px-3 py-2 ml-3 bg-gray-300 text-gray-700 cursor-not-allowed rounded">
+                    Next
+                </span>
+            @endif
+        </nav>
+    </div>
+
 
     <div class="py-4">
         {{ $kinerjaData->links() }}
     </div>
-    <!-- Edit Kinerja modal -->
+    <!-- Modal Edit -->
     <div id="editKinerjaModal" tabindex="-1" aria-hidden="true"
         class="fixed top-0 left-0 right-0 z-50 items-center justify-center hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
         <div class="relative w-full max-w-2xl max-h-full">
             <!-- Modal content -->
-            <form class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+            <form id="editKinerjaForm" action=""
+                class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                @csrf
+                @method('PUT')
+
                 <!-- Modal header -->
                 <div class="flex items-start justify-between p-4 border-b rounded-t dark:border-gray-600">
-                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
-                        Edit
-                    </h3>
+                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white">Edit Kinerja</h3>
                     <button type="button"
                         class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
                         data-modal-hide="editKinerjaModal">
@@ -121,80 +164,97 @@
                         <span class="sr-only">Close modal</span>
                     </button>
                 </div>
+
                 <!-- Modal body -->
                 <div class="p-6 space-y-6">
                     <div class="grid grid-cols-6 gap-6">
                         <div class="col-span-6 sm:col-span-3">
-                            <label for="first-name"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">First Name</label>
-                            <input type="text" name="first-name" id="first-name"
-                                class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="Bonnie" required="">
+                            <label for="nama_kegiatan"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama
+                                Kegiatan</label>
+                            <input type="text" name="nama_kegiatan" id="nama_kegiatan"
+                                value=""
+                                class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                                required>
                         </div>
                         <div class="col-span-6 sm:col-span-3">
-                            <label for="last-name"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Last Name</label>
-                            <input type="text" name="last-name" id="last-name"
-                                class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="Green" required="">
+                            <label for="tim_kerja_id"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tim Kerja</label>
+                            <select id="tim_kerja_id" name="tim_kerja_id"
+                                class="border border-gray-300 rounded-lg p-2 dark:bg-gray-700 dark:text-white">
+                                @foreach ($timKerjaOptions as $timKerja)
+                                    <option value="{{ $timKerja->id }}">
+                                        {{ $timKerja->nama_tim }}
+                                    </option>
+                                @endforeach
+                            </select>
                         </div>
                         <div class="col-span-6 sm:col-span-3">
-                            <label for="email"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
-                            <input type="email" name="email" id="email"
-                                class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="example@company.com" required="">
+                            <label for="start_date"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tanggal
+                                Mulai</label>
+                            <input type="date" name="start_date" id="start_date"
+                                value="{{ \Carbon\Carbon::parse($kinerja->start_date)->format('Y-m-d') }}"
+                                class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                                required>
                         </div>
                         <div class="col-span-6 sm:col-span-3">
-                            <label for="phone-number"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Phone
-                                Number</label>
-                            <input type="number" name="phone-number" id="phone-number"
-                                class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="e.g. +(12)3456 789" required="">
+                            <label for="end_date"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tanggal
+                                Selesai</label>
+                            <input type="date" name="end_date" id="end_date"
+                                value="{{ \Carbon\Carbon::parse($kinerja->end_date)->format('Y-m-d') }}"
+                                class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                                required>
                         </div>
                         <div class="col-span-6 sm:col-span-3">
-                            <label for="department"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Department</label>
-                            <input type="text" name="department" id="department"
-                                class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="Development" required="">
+                            <label for="target"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Target</label>
+                            <input type="number" name="target" id="target" value="{{ $kinerja->target }}"
+                                class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                                required>
                         </div>
                         <div class="col-span-6 sm:col-span-3">
-                            <label for="company"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Company</label>
-                            <input type="number" name="company" id="company"
-                                class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="123456" required="">
+                            <label for="realisasi"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Realisasi</label>
+                            <input type="number" name="realisasi" id="realisasi" value="{{ $kinerja->realisasi }}"
+                                class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                                required>
                         </div>
                         <div class="col-span-6 sm:col-span-3">
-                            <label for="current-password"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Current
-                                Password</label>
-                            <input type="password" name="current-password" id="current-password"
-                                class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="••••••••" required="">
+                            <label for="satuan"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Satuan</label>
+                            <input type="text" name="satuan" id="satuan" value="{{ $kinerja->satuan }}"
+                                class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                                required>
                         </div>
                         <div class="col-span-6 sm:col-span-3">
-                            <label for="new-password"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">New
-                                Password</label>
-                            <input type="password" name="new-password" id="new-password"
-                                class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="••••••••" required="">
+                            <label for="link_bukti_dukung"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Link Bukti
+                                Dukung</label>
+                            <input type="text" name="link_bukti_dukung" id="link_bukti_dukung"
+                                value="{{ $kinerja->link_bukti_dukung }}"
+                                class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white">
+                        </div>
+                        <div class="col-span-6 sm:col-span-3">
+                            <label for="keterangan"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Keterangan</label>
+                            <textarea name="keterangan" id="keterangan"
+                                class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white">{{ $kinerja->keterangan }}</textarea>
                         </div>
                     </div>
                 </div>
+
                 <!-- Modal footer -->
-                <div
-                    class="flex items-center p-6 space-x-3 rtl:space-x-reverse border-t border-gray-200 rounded-b dark:border-gray-600">
+                <div class="flex items-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
                     <button type="submit"
-                        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Save
-                        all</button>
+                        class="text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-500 dark:hover:bg-blue-600 dark:focus:ring-blue-800">Simpan
+                        Perubahan</button>
                 </div>
             </form>
         </div>
     </div>
+
 </div>
 
 <script>
